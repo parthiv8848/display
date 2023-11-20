@@ -28,6 +28,7 @@
 /* Sidebar styles */
 .sidebar {
   width: 20%;
+  min-width: 200px;
   background-color: #282c34;
   padding: 20px;
   color: #f9f9f9;
@@ -36,13 +37,14 @@
 /* Main container styles */
 .main-container {
   display: flex;
-  max-width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin: 20px;
 }
 
 /* Form container styles */
 .container {
-  width: 80%;
+  width: 74%;
   padding: 20px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
