@@ -2,49 +2,89 @@ import React, { useState } from 'react'
 import Sidebar from './Sidebar'
 
 const Form = () => {
+  const initialFormData = {
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    gender: "",
+    birthDate: "",
+    country: "",
+    occupation: "",
+    website: "",
+    interests: [],
+  };
 
- const initialFormData = {
-   name: "",
-   email: "",
-   phone: "",
-   message: "",
-   gender: "",
-   birthDate: "",
-   country: "",
-   occupation: "",
-   website: "",
-   interests: "",
- };
+  const [formData, setFormData] = useState(initialFormData);
+  const [errors, setErrors] = useState({});
 
- const [formData, setFormData] = useState(initialFormData);
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {};
 
- const handleChange = (e) => {
-   const { name, value } = e.target;
-   setFormData({ ...formData, [name]: value });
- };
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+      valid = false;
+    }
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+      valid = false;
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+      valid = false;
+    }
 
-  // Get existing data from local storage or initialize an empty array
-  const existingData = JSON.parse(localStorage.getItem("formData")) || [];
+     if (!formData.phone.trim()) {
+       newErrors.phone = "Phone number is required";
+       valid = false;
+     } else if (!/^[0-9]{10}$/.test(formData.phone)) {
+       newErrors.phone = "Please enter a valid 10-digit phone number";
+       valid = false;
+     }
 
-  // Create a new object with the form data
-  const newData = { ...formData };
+    // Add more validations for other fields as needed
 
-  // Add the new form data to the existing array
-  const updatedData = [...existingData, newData];
+    setErrors(newErrors);
+    return valid;
+  };
 
-  // Store the updated array in local storage
-  localStorage.setItem("formData", JSON.stringify(updatedData));
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
 
-  // Reset form fields after submission
- setFormData(initialFormData);
-};
+    if (type === "checkbox") {
+      const updatedInterests = checked
+        ? [...formData.interests, value]
+        : formData.interests.filter((interest) => interest !== value);
 
- const handleReset = () => {
-   setFormData(initialFormData);
- };
+      setFormData({ ...formData, interests: updatedInterests });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      // Form submission logic when form is valid
+      const existingData = JSON.parse(localStorage.getItem("formData")) || [];
+      const newData = { ...formData };
+      const updatedData = [...existingData, newData];
+      localStorage.setItem("formData", JSON.stringify(updatedData));
+      setFormData(initialFormData);
+      setErrors({});
+    } else {
+      // Form has validation errors, handle accordingly
+      // For example, display an error message or prevent submission
+      console.log("Form has validation errors.");
+    }
+  };
+
+  const handleReset = () => {
+    setFormData(initialFormData);
+    setErrors({});
+  };
   return (
     <div className="main-container">
       <Sidebar></Sidebar>
@@ -62,8 +102,11 @@ const handleSubmit = (e) => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              required
+            
             />
+            {errors.name && (
+              <span className="error-message" >{errors.name}</span>
+            )}
           </div>
           <div className="form-row">
             <label className="form-label" htmlFor="email">
@@ -76,8 +119,11 @@ const handleSubmit = (e) => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              required
+          
             />
+            {errors.email && (
+              <span className="error-message">{errors.email}</span>
+            )}
           </div>
           <div className="form-row">
             <label className="form-label" htmlFor="phone">
@@ -90,8 +136,11 @@ const handleSubmit = (e) => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              required
+           
             />
+            {errors.phone && (
+              <span className="error-message">{errors.phone}</span>
+            )}
           </div>
           <div className="form-row">
             <label className="form-label" htmlFor="message">
@@ -105,19 +154,29 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label className="form-label" htmlFor="gender">
-              Gender:
-            </label>
-            <select
-              id="gender"
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-            >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
+            <label className="form-label">Gender:</label>
+            <div>
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                onChange={handleChange}
+                checked={formData.gender === "male"}
+              />
+              <label htmlFor="male">Male</label>
+            </div>
+            <div className="gender">
+              <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+                onChange={handleChange}
+                checked={formData.gender === "female"}
+              />
+              <label htmlFor="female">Female</label>
+            </div>
           </div>
           <div className="form-row">
             <label className="form-label" htmlFor="birthDate">
@@ -176,17 +235,31 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="interests" className="form-label">
+            <label className="form-label" htmlFor="interests">
               Interests:
             </label>
-            <input
-              className="form-input"
-              type="text"
-              id="interests"
-              name="interests"
-              value={formData.interests}
-              onChange={handleChange}
-            />
+            <div>
+              <input
+                type="checkbox"
+                id="sports"
+                name="interests"
+                value="sports"
+                onChange={handleChange}
+                checked={formData.interests.includes("sports")}
+              />
+              <label htmlFor="sports">Sports</label>
+            </div>
+            <div className="sports">
+              <input
+                type="checkbox"
+                id="music"
+                name="interests"
+                value="music"
+                onChange={handleChange}
+                checked={formData.interests.includes("music")}
+              />
+              <label htmlFor="music">Music</label>
+            </div>
           </div>
           <div className="form-row">
             <button type="submit" className="submit-button">
@@ -204,6 +277,6 @@ const handleSubmit = (e) => {
       </div>
     </div>
   );
-}
+};
 
 export default Form
