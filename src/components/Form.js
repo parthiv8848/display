@@ -60,8 +60,11 @@ const handleSubmit = (e) => {
         <h2>Contact Form</h2>
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-row">
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name" className="form-label">
+              Name:
+            </label>
             <input
+              className="form-input"
               type="text"
               id="name"
               name="name"
@@ -71,8 +74,11 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="email">Email:</label>
+            <label className="form-label" htmlFor="email">
+              Email:
+            </label>
             <input
+              className="form-input"
               type="email"
               id="email"
               name="email"
@@ -82,8 +88,11 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="phone">Phone:</label>
+            <label className="form-label" htmlFor="phone">
+              Phone:
+            </label>
             <input
+              className="form-input"
               type="tel"
               id="phone"
               name="phone"
@@ -93,7 +102,9 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="message">Message:</label>
+            <label className="form-label" htmlFor="message">
+              Message:
+            </label>
             <textarea
               id="message"
               name="message"
@@ -102,7 +113,9 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="gender">Gender:</label>
+            <label className="form-label" htmlFor="gender">
+              Gender:
+            </label>
             <select
               id="gender"
               name="gender"
@@ -115,8 +128,11 @@ const handleSubmit = (e) => {
             </select>
           </div>
           <div className="form-row">
-            <label htmlFor="birthDate">Birth Date:</label>
+            <label className="form-label" htmlFor="birthDate">
+              Birth Date:
+            </label>
             <input
+              className="form-input"
               type="date"
               id="birthDate"
               name="birthDate"
@@ -125,7 +141,9 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="country">Country:</label>
+            <label className="form-label" htmlFor="country">
+              Country:
+            </label>
             <select
               id="country"
               name="country"
@@ -140,8 +158,11 @@ const handleSubmit = (e) => {
             </select>
           </div>
           <div className="form-row">
-            <label htmlFor="occupation">Occupation:</label>
+            <label className="form-label" htmlFor="occupation">
+              Occupation:
+            </label>
             <input
+              className="form-input"
               type="text"
               id="occupation"
               name="occupation"
@@ -150,8 +171,11 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="website">Website:</label>
+            <label className="form-label" htmlFor="website">
+              Website:
+            </label>
             <input
+              className="form-input"
               type="url"
               id="website"
               name="website"
@@ -160,8 +184,11 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <label htmlFor="interests">Interests:</label>
+            <label htmlFor="interests" className="form-label">
+              Interests:
+            </label>
             <input
+              className="form-input"
               type="text"
               id="interests"
               name="interests"
@@ -170,7 +197,9 @@ const handleSubmit = (e) => {
             />
           </div>
           <div className="form-row">
-            <button type="submit">Submit</button>
+            <button type="submit" className="submit-button">
+              Submit
+            </button>
           </div>
         </form>
       </div>

@@ -1,192 +1,175 @@
-/* Base styles */
-body {
-  font-family: Arial, sans-serif;
+/* Common styles */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
 }
 
-.main-container {
-  display: flex;
-}
-.container {
-
-    flex: 1;
-    /* Allow the content to take up remaining space */
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
-}
-
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Navbar styles */
-.nav-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.navbar-container {
   background-color: #3d88c7;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.nav-ul {
+  list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  height: 57px;
 }
 
 .nav-ul li {
-  margin: 0 10px;
+  margin-right: 20px;
 }
 
 .nav-ul li a {
-  color: #fff;
   text-decoration: none;
-  padding: 8px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  color: #fff;
+  transition: color 0.3s ease-in-out;
 }
 
 .nav-ul li a:hover {
-  background-color: #d9534f;
+  color: #5d9cec;
 }
 
-/* Sidebar styles */
+/* Media queries for responsive navigation */
+@media screen and (max-width: 771px) {
+  .nav-ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+/* Sidebar */
 .sidebar {
-  width: 250px;
-  /* Adjust sidebar width as needed */
-  min-width: 250px;
+  width: 20%;
   background-color: #282c34;
   padding: 20px;
   color: #f9f9f9;
-  border-radius: 5px;
+  transition: width 0.3s ease;
 }
 
-/* Main content styles */
-.main-content {
-  width: 75%;
-  margin-left: 25%;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Media queries for responsive sidebar */
+@media screen and (max-width: 771px) {
+  .sidebar {
+    width: 30%;
+    padding: 10px;
+    margin: 5px;
+  }
 }
 
-/* Form styles */
-.form {
+/* Form */
+.main-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+}
+
+.container {
+  width: 78%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  margin-top: 20px;
 }
 
 .form-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-label {
+.form-label {
   font-weight: bold;
-  margin-right: 15px;
+  margin-right: 20px;
   color: #333;
-  width: 120px;
-  text-align: right;
+  width: 150px;
+  max-width: 100%;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea,
-select {
-  flex: 1;
+.form-input {
+  width: calc(100% - 170px);
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  transition: border-color 0.3s ease-in-out;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-button {
-  width: 100%;
+.submit-button {
+  width: 150px;
   padding: 12px;
   background-color: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .sidebar {
-    width: 100%;
-    margin-bottom: 20px;
+/* Media queries for responsive form */
+@media screen and (max-width: 771px) {
+  .container {
+    width: 70%;
+    padding: 0;
   }
 
-  .main-content {
+  .form-label {
     width: 100%;
-    margin-left: 0;
-  }
-
-  label {
-    width: auto;
+    max-width: 100%;
     margin-right: 0;
-    text-align: left;
+    margin-bottom: 5px;
   }
 
-  input,
-  textarea,
-  select {
+  .form-input {
     width: 100%;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
   }
 
-  button {
-    width: auto;
+  .submit-button {
+    width: 100%;
   }
 }
 
-/* DisplayPage.css */
-
-/* Display container styles */
+/* Responsive card view */
 .display-container {
-  max-width: 800px;
-  margin: 20px auto;
   padding: 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Data item styles (card-like) */
 .data-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-gap: 20px;
 }
 
 .data-item {
-  padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  padding: 15px;
+  background-color: #f9f9f9;
 }
 
-/* Individual field styles */
 .field {
   margin-bottom: 10px;
-  /* Add any other styles needed for the fields */
 }
+
+.field-name {
+  font-weight: bold;
+}
+
+/* Media queries for responsiveness */
+@media screen and (min-width: 771px) {
+  .data-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .data-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
