@@ -122,7 +122,25 @@
   
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin-left:40% 
+}
+
+.reset-button{
+display: block;
+  margin-right:  auto;
+  /* Centers the button horizontally */
+  width: 150px;
+  /* Adjust width as needed */
+  padding: 13px;
+  margin:5px;
+  /* Adds space between the Submit and Reset buttons */
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease-in-out;
+
 }
 
 .submit-button:hover {
