@@ -119,32 +119,44 @@
   box-sizing: border-box;
   transition: background-color 0.3s ease-in-out;
   display: flex;
-  
   justify-content: center;
   align-items: center;
-  margin-left:40% 
+  margin-left: 40%;
 }
 
-.reset-button{
-display: block;
-  margin-right:  auto;
-  /* Centers the button horizontally */
+/* Reset button styles */
+.reset-button {
+  display: block;
+  margin-right: auto;
   width: 150px;
-  /* Adjust width as needed */
   padding: 13px;
-  margin:5px;
-  /* Adds space between the Submit and Reset buttons */
+  margin: 5px;
   background-color: #dc3545;
   color: #fff;
   border: none;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease-in-out;
+}
 
+/* Hover styles */
+.reset-button:hover {
+  background-color: #c82333;
 }
 
 .submit-button:hover {
   background-color: #0056b3;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 767px) {
+
+  .submit-button,
+  .reset-button {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
 
 /* Media queries for responsive form */
